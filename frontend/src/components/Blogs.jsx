@@ -29,9 +29,7 @@ export default function Blogs() {
   Moment.locale("en");
 
   return (
-    <div className="flex flex-col text-center align-items-center pt-3 pb-16 lg:pt-16 lg:pb-24  dark:bg-gray-900">
-      {/* <h1 className="text-5xl font-bold mt-0 mx-auto">Posts</h1> */}
-      <hr />
+    <div className=" flex flex-col text-center align-items-center pt-3 pb-16 lg:pt-8 lg:pb-24  dark:bg-gray-900">
       <div className="flex flex-col-reverse">
         {blogs.map((item, k) => (
           <div
@@ -51,9 +49,11 @@ export default function Blogs() {
               <p className="my-3 text-slate-400 text-sm">
                 Posted: {Moment(item.date_posted).calendar()}
               </p>
-            </div>
 
-            <hr />
+              {/* <p className="my-3 text-slate-400 text-m underline">
+                <Link to={`/blog/${item._id}`}>0 comments</Link>
+              </p> */}
+            </div>
           </div>
         ))}
       </div>

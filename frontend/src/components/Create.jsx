@@ -11,6 +11,7 @@ export default function Create() {
   const [date, setDate] = useState();
 
   const navigate = useNavigate();
+
   function handleChange(event) {
     const { name, value } = event.target;
 

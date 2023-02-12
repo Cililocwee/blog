@@ -20,6 +20,13 @@ export default function Navbar() {
       </Link>
 
       <Link
+        to={"/aboutme"}
+        className="text-2xl no-underline text-grey-darkest hover:text-blue-dark"
+      >
+        About Me
+      </Link>
+
+      <Link
         to={"/create"}
         className="text-2xl no-underline text-grey-darkest hover:text-blue-dark"
       >

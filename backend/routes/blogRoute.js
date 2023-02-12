@@ -9,4 +9,6 @@ router.get("/blogs", blog_controller.blog_list);
 
 router.get("/blog/details/:id", blog_controller.specific_blog);
 
+router.delete("/blog/delete/:id", blog_controller.blog_delete_post);
+
 module.exports = router;

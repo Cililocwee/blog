@@ -16,15 +16,15 @@ export default function Home() {
           MERN project (yee!).
         </p>
         <p className="mb-5 mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-          As of now, it is officially my blog! I document the things I've lerned
-          and this helps to solidify concepts in my head!
+          As of now, it is officially my blog! I document the things I've
+          learned and this helps to solidify concepts in my head!
         </p>
       </div>
       <div id="socials" className="flex flex-col items-center">
         <p className="text-center mb-5 mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-          Check out my other projects by visiting this link{" "}
+          Check out my other projects by visiting this link:{" "}
           <Link to={"https://corrie-stroup.web.app"}>
-            <span className="underline">My Blog</span>
+            <span className="underline">My Portfolio</span>
           </Link>
         </p>
         <p className="text-center mb-5 mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">

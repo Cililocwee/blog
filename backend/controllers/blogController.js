@@ -20,14 +20,12 @@ exports.blog_list = (req, res, next) => {
 
 // Display detailed blogpost (specific blogpost)
 exports.specific_blog = (req, res, next) => {
-  console.log(req);
   Blog.findById(req.params.id).exec(function (err, one_blog) {
     if (err) {
       return next(err);
     }
 
     // Success => Render
-    console.log(one_blog._id);
     res.send(one_blog);
   });
 };
@@ -64,6 +62,22 @@ exports.blog_create_post = [
 ];
 
 // Handle blogpost delete POST
+exports.blog_delete_post = (req, res, next) => {
+  Blog.findById(req.params.id).exec((err, results) => {
+    if (err) {
+      return next(err);
+    }
+
+    // Success in finding blog
+    Blog.findByIdAndRemove(req.params.id, (err) => {
+      if (err) {
+        return next(err);
+      }
+
+      // Delete successful, redirect (try redirect on frontend)
+    });
+  });
+};
 
 // Display comments for one blogpost
 
