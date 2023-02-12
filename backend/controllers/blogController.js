@@ -75,6 +75,8 @@ exports.blog_delete_post = (req, res, next) => {
       }
 
       // Delete successful, redirect (try redirect on frontend)
+      //**  NOTE: This must send a response or it can't resolve!
+      res.send("Delete successful");
     });
   });
 };

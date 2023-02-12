@@ -32,16 +32,26 @@ export default function DetailedBlog({ id }) {
   function handleDelete() {
     fetch(`http://localhost:3001/blog/delete/${location}`, {
       method: "Delete",
-      redirect: "follow",
     })
-      .then((res) => {
-        res.text();
-      })
-      .then((res) => console.log(res));
+      .then(async (res) => {
+        const data = await res.text();
 
-    navigate("/blogs");
+        // check for errors
+        if (!res.ok) {
+          // send error message
+          const error = (data && data.message) || res.status;
+          return Promise.reject(error);
+        }
+
+        navigate("/blogs");
+      })
+      .catch((err) => {
+        console.error("There was an error!", err);
+      });
   }
+
   Moment.locale("en");
+
   return (
     <div className="mb-auto flex flex-col align-items-center pt-3 pb-16 lg:pt-8 lg:pb-24  dark:bg-gray-900">
       {blog && (

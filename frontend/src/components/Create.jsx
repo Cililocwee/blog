@@ -41,6 +41,7 @@ export default function Create() {
       date_posted: date,
     };
 
+    // TODO Refactor this to either take a fetch call or chain .then() after axios
     axios.post("http://localhost:3001/create", newBlog);
     navigate("/blogs");
   }
