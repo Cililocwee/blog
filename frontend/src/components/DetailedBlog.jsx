@@ -53,7 +53,7 @@ export default function DetailedBlog({ id }) {
   Moment.locale("en");
 
   return (
-    <div className="mb-auto flex flex-col align-items-center pt-3 pb-16 lg:pt-8 lg:pb-24  dark:bg-gray-900">
+    <div className="px-8 mb-auto flex flex-col align-items-center pt-3 pb-16 lg:pt-8 lg:pb-24  dark:bg-gray-900">
       {blog && (
         <div className="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
           <h1 className="text-center my-4 text-3xl font-extrabold lemb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-whiteading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
