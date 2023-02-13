@@ -6,6 +6,7 @@ import "./index.css";
 import DetailedBlog from "./components/DetailedBlog";
 import AboutMe from "./components/AboutMe";
 import Footer from "./components/Footer";
+import UpdateForm from "./components/UpdateForm";
 
 function App() {
   return (
@@ -16,11 +17,9 @@ function App() {
           <Route path="/" element={<Blogs />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/create" element={<Create />} />
-          <Route
-            path="/blog/:id"
-            element={<DetailedBlog id={"63e7b712ec2c6ef3a1a02396"} />}
-          />
+          <Route path="/blog/:id" element={<DetailedBlog />} />
           <Route path="/aboutme" element={<AboutMe />} />
+          <Route path="/update/:id" element={<UpdateForm />} />
         </Routes>
         <Footer />
       </Router>

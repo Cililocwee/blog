@@ -1,5 +1,3 @@
-//TODO Separate out the controller logic from the route logic
-
 const Blog = require("../models/blogModel");
 const async = require("async");
 const { body, validationResult } = require("express-validator");
@@ -83,7 +81,47 @@ exports.blog_delete_post = (req, res, next) => {
 
 // Display comments for one blogpost
 
+// Handle blogpost update form GET
+exports.blog_update_get = (req, res, next) => {
+  Blog.findById(req.params.id).exec((err, result) => {
+    if (err) {
+      return next(err);
+    }
+    if (result == null) {
+      // Not found
+      const err = new Error("Post not found");
+      err.status = 404;
+      return next(err);
+    }
+
+    // Successfully found post
+    res.send(result);
+  });
+};
+
 // Handle blogpost update form POST
+exports.blog_update_post = [
+  (req, res, next) => {
+    //TODO Quick and dirty, redo to be safer (like create)
+
+    // Create the blog object
+    const post = new Blog({
+      title: req.body.title,
+      content: req.body.content,
+      date_posted: req.body.date_posted,
+      _id: req.params.id,
+    });
+
+    // todo do something with errors (some way to display)
+
+    Blog.findByIdAndUpdate(req.params.id, post, {}, (err, theblog) => {
+      if (err) {
+        return next(err);
+      }
+      res.send("Update successful");
+    });
+  },
+];
 
 // ------------------------- //
 

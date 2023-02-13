@@ -45,10 +45,11 @@ export default function Create() {
     axios.post("http://localhost:3001/create", newBlog);
     navigate("/blogs");
   }
+
   return (
     <div className="flex flex-col items-center pt-3 pb-16 lg:pt-16 lg:pb-24  dark:bg-gray-900">
       <h1 className="text-5xl font-bold mt-0 mb-6">Post a new blog</h1>
-      <form className="gap-5 items-stretch mb-3 xl:w-96 flex flex-col">
+      <form className="gap-5 items-stretch mb-3 w-96 flex flex-col">
         <div className="form-group">
           <label
             htmlFor="title"

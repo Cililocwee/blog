@@ -5,7 +5,7 @@ export default function CommentInput() {
     <div className="max-w-lg rounded-lg shadow-md shadow-stone-600/50">
       <form action="" className="w-full p-4">
         <div className="mb-2">
-          <label for="comment" className="text-lg text-gray-600">
+          <label htmlFor="comment" className="text-lg text-gray-600">
             Add a comment
           </label>
           <textarea

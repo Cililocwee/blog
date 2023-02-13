@@ -6,7 +6,7 @@ export default function DropDown() {
     <div className="block sm:hidden my-auto">
       <div className="pl-10">
         <div className="dropdown inline-block relative">
-          <button className="bg-stone-400 text-stone-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+          <button className="bg-stone-400 text-stone-100 font-semibold py-2 px-4 rounded inline-flex items-center">
             <span className="mr-1 w-16">Menu</span>
             <svg
               className="fill-current h-4 w-4"
@@ -31,6 +31,14 @@ export default function DropDown() {
                 to="/aboutme"
               >
                 About Me
+              </Link>
+            </li>
+            <li className="">
+              <Link
+                className="w-full bg-stone-300 hover:bg-stone-400 py-2 px-4 block whitespace-no-wrap"
+                to="/create"
+              >
+                New Post
               </Link>
             </li>
             <li className="">

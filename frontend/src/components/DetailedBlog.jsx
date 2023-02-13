@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import CommentBox from "./CommentBox";
 import CommentInput from "./CommentInput";
+import DeleteConfirm from "./DeleteConfirm";
 
 export default function DetailedBlog({ id }) {
   const [blog, setBlog] = useState([
@@ -52,10 +53,23 @@ export default function DetailedBlog({ id }) {
       });
   }
 
+  function confirmDelete() {
+    if (confirm("Do you really want to delete this post?")) {
+      handleDelete();
+    }
+  }
+
+  function handleUpdate() {
+    navigate(`/update/${location}`);
+  }
+
   Moment.locale("en");
 
   return (
-    <div className="px-8 mb-auto flex flex-col items-center pt-3 pb-16 lg:pt-8 lg:pb-24  dark:bg-gray-900">
+    <div
+      id="detailed_blog"
+      className="px-8 mb-auto flex flex-col items-center pt-3 pb-16 lg:pt-8 lg:pb-24  dark:bg-gray-900"
+    >
       {blog && (
         <div className="pb-8 mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
           <h1 className="text-center my-4 text-3xl font-extrabold lemb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-whiteading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
@@ -67,11 +81,14 @@ export default function DetailedBlog({ id }) {
               Posted: {Moment(blog.date_posted).calendar()}
             </p>
             <div className="flex align-items-center">
-              <button className="m-3 w-16 h-8 px-3 py-2 text-xs font-medium  text-center text-white bg-stone-400 rounded-lg hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800">
+              <button
+                onClick={handleUpdate}
+                className="m-3 w-16 h-8 px-3 py-2 text-xs font-medium  text-center text-white bg-stone-400 rounded-lg hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800"
+              >
                 Edit
               </button>
               <button
-                onClick={handleDelete}
+                onClick={confirmDelete}
                 className="m-3 h-8 w-16 px-3 py-2 text-xs font-medium text-center text-white bg-stone-700 rounded-lg hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800"
               >
                 Delete

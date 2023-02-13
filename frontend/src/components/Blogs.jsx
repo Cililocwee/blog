@@ -20,7 +20,6 @@ export default function Blogs() {
         }
       })
       .then((jsonRes) => {
-        // console.log(jsonRes);
         setBlogs([...jsonRes]);
       })
       .catch((err) => console.error(err));

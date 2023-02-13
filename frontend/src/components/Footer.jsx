@@ -1,6 +1,6 @@
 import React from "react";
-import Github from "../assets/github.png";
-import Linkedin from "../assets/linkedin.png";
+import Github from "../assets/github.svg";
+import Linkedin from "../assets/linkedin.svg";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -12,7 +12,7 @@ export default function Footer() {
           corrie.stroup@gmail.com
         </a>{" "}
       </p>
-      <div className="flex">
+      <div className="flex pt-1">
         <Link to="http://google.com">
           <img className="h-10 mx-2 mt-1" src={Github} alt="" />
         </Link>
