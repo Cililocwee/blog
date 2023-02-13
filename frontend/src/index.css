@@ -6,6 +6,6 @@
   font-family: "Alegreya";
 }
 
-/* * {
-  background-color: #fbfaf5;
-} */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
