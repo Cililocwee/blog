@@ -7,6 +7,7 @@ import DetailedBlog from "./components/DetailedBlog";
 import AboutMe from "./components/AboutMe";
 import Footer from "./components/Footer";
 import UpdateForm from "./components/UpdateForm";
+import FloatingCreate from "./components/FloatingCreate";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/aboutme" element={<AboutMe />} />
           <Route path="/update/:id" element={<UpdateForm />} />
         </Routes>
+        <FloatingCreate />
         <Footer />
       </Router>
     </div>
