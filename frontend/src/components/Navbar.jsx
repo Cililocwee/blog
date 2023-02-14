@@ -5,8 +5,7 @@ import Github from "../assets/github.svg";
 import Linkedin from "../assets/linkedin.svg";
 import DropDown from "./DropDown";
 
-export default function Navbar() {
-  const [user, setUser] = useState("");
+export default function Navbar({ username, login, logout }) {
   const greeting = ["Howdy", "Hi there", "Welcome", "Greetings", "Hello"];
   const [userGreeting, setUserGreeting] = useState("");
 
@@ -17,6 +16,7 @@ export default function Navbar() {
   function randomGreeting() {
     return greeting[Math.floor(Math.random() * greeting.length)];
   }
+
   return (
     <nav className="font-sans flex justify-between text-center sm:align-center sm:flex-row sm:text-left sm:justify-center py-4 px-6 shadow sm:items-center w-full">
       <Link to={"/"}>
@@ -56,17 +56,23 @@ export default function Navbar() {
         </Link>
         <div>
           <button className="w-40 peer px-3 py-2 bg-stone-500 hover:bg-stone-700 text-stone-200">
-            {userGreeting}! <br />
-            Sign in to comment
+            {`${userGreeting}, ${username || "Guest"}`} <br />
+            {username ? "" : "Sign in to comment"}
           </button>
 
           <div className="w-40 absolute hidden peer-hover:flex hover:flex flex-1 flex-col bg-white drop-shadow-lg">
-            <a href="" className="px-5 py-3 hover:bg-stone-300">
-              Sign In
-            </a>
-            <a href="" className="px-5 py-3 hover:bg-stone-300">
-              Sign Out
-            </a>
+            {username ? (
+              <button onClick={logout} className="px-5 py-3 hover:bg-stone-300">
+                Sign Out
+              </button>
+            ) : (
+              <button
+                onClick={() => login()}
+                className="px-5 py-3 hover:bg-stone-300"
+              >
+                Sign In
+              </button>
+            )}
           </div>
         </div>
       </div>
