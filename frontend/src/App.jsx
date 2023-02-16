@@ -55,19 +55,6 @@ function App() {
           logout={logOut}
         />
 
-        {/* <h1>React Google Login</h1>
-        {profile ? (
-          <div>
-            <img src={profile.picture} alt="user image" />
-            <h3>User logged in</h3>
-            <p>Name: {profile.name}</p>
-            <p>Email: {profile.email}</p>
-            <button onClick={logOut}>Log out</button>
-          </div>
-        ) : (
-          <button onClick={() => login()}>Sign in</button>
-        )} */}
-
         <Routes>
           <Route path="/" element={<Blogs />} />
           <Route path="/blogs" element={<Blogs />} />
@@ -76,7 +63,11 @@ function App() {
           <Route path="/aboutme" element={<AboutMe />} />
           <Route path="/update/:id" element={<UpdateForm />} />
         </Routes>
-        <FloatingCreate />
+        {profile?.id === import.meta.env.VITE_ADMIN_ID ? (
+          <FloatingCreate />
+        ) : (
+          ""
+        )}
         <Footer />
       </Router>
     </div>
