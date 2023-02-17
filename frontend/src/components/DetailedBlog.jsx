@@ -153,7 +153,15 @@ export default function DetailedBlog({ id, profile }) {
           submitfnc={handleSubmit}
         />
       )}
-      <CommentBox />
+
+      {comments.map((comment) => (
+        <CommentBox
+          comment_body={comment.comment_body}
+          date_posted={comment.date_posted}
+          username={comment.username}
+          profile_pic_url={comment.profile_pic_url}
+        />
+      ))}
     </div>
   );
 }
