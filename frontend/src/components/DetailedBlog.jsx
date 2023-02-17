@@ -6,7 +6,7 @@ import CommentBox from "./CommentBox";
 import CommentInput from "./CommentInput";
 import DeleteConfirm from "./DeleteConfirm";
 
-export default function DetailedBlog({ id }) {
+export default function DetailedBlog({ id, profile }) {
   const location = window.location.href.split("/blog/")[1];
   const navigate = useNavigate();
   Moment.locale("en");
@@ -78,10 +78,33 @@ export default function DetailedBlog({ id }) {
       return {
         ...prevInput,
         [name]: value,
+        username: profile.given_name,
+        profile_pic_url: profile.picture,
+        date_posted: new Date(),
       };
     });
 
-    console.log(input);
+    // console.log(input);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    // console.log(input);
+
+    if (input.comment_body < 1) {
+      alert("Comments must be more than 1 character!");
+    }
+
+    axios
+      .post("http://localhost:3001/comments/submit", input)
+      .catch((err) => console.log(err));
+    setInput({
+      username: "",
+      profile_picture_url: "",
+      comment_body: "",
+      date_posted: "",
+      associated_blog: location,
+    });
   }
 
   return (
@@ -116,10 +139,13 @@ export default function DetailedBlog({ id }) {
           </div>
         </div>
       )}
-      <CommentInput
-        changefnc={handleChange}
-        comment_body={input.comment_body}
-      />
+      {profile && (
+        <CommentInput
+          changefnc={handleChange}
+          comment_body={input.comment_body}
+          submitfnc={handleSubmit}
+        />
+      )}
       <CommentBox />
     </div>
   );

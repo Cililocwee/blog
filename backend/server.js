@@ -12,6 +12,7 @@ mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGODB_URI);
 
 app.use("/", require("./routes/blogRoute"));
+app.use("/comments", require("./routes/commentRoute"));
 
 const PORT = process.env.PORT || 3001;
 

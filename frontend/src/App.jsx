@@ -54,12 +54,15 @@ function App() {
           login={login}
           logout={logOut}
         />
-
+        <button onClick={() => console.log(profile)}>Click</button>
         <Routes>
           <Route path="/" element={<Blogs />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/create" element={<Create />} />
-          <Route path="/blog/:id" element={<DetailedBlog />} />
+          <Route
+            path="/blog/:id"
+            element={<DetailedBlog profile={profile} />}
+          />
           <Route path="/aboutme" element={<AboutMe />} />
           <Route path="/update/:id" element={<UpdateForm />} />
         </Routes>

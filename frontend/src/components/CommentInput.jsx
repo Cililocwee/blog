@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CommentInput({ changefnc, comment_body }) {
+export default function CommentInput({ changefnc, comment_body, submitfnc }) {
   return (
     <div className="max-w-lg rounded-lg shadow-md shadow-stone-600/50">
       <form action="" className="w-full p-4">
@@ -17,7 +17,10 @@ export default function CommentInput({ changefnc, comment_body }) {
           ></textarea>
         </div>
         <div className="flex justify-between">
-          <button className="px-3 py-2 text-sm text-purple-100 bg-stone-600 rounded">
+          <button
+            onClick={submitfnc}
+            className="px-3 py-2 text-sm text-purple-100 bg-stone-600 rounded"
+          >
             Comment
           </button>
           <button className="px-3 py-2 text-sm text-stone-600 border border-stone-500 rounded">
