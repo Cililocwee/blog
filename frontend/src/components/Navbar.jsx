@@ -55,28 +55,26 @@ export default function Navbar({ username, login, logout }) {
           <img className="h-8" src={Linkedin} alt="" />
         </Link>
         <div>
-          <button className="w-40 peer px-3 py-2 bg-stone-500 hover:bg-stone-700 text-stone-200">
-            {`${userGreeting}, ${username || "Guest"}`} <br />
-            {username ? "" : "Sign in to comment"}
-          </button>
-
-          <div className="w-40 absolute hidden peer-hover:flex hover:flex flex-1 flex-col bg-white drop-shadow-lg">
-            {username ? (
-              <button onClick={logout} className="px-5 py-3 hover:bg-stone-300">
-                Sign Out
-              </button>
-            ) : (
-              <button
-                onClick={() => login()}
-                className="px-5 py-3 hover:bg-stone-300"
-              >
-                Sign In
-              </button>
-            )}
-          </div>
+          {username ? (
+            <button
+              onClick={logout}
+              className="w-40 peer px-3 py-2 bg-stone-500 hover:bg-stone-700 text-stone-200"
+            >
+              {`${userGreeting}, ${username}`}
+              <br />
+              Click here to log out
+            </button>
+          ) : (
+            <button
+              onClick={() => login()}
+              className="w-40 peer px-3 py-2 bg-stone-500 hover:bg-stone-700 text-stone-200"
+            >
+              Click here to sign in and comment
+            </button>
+          )}
         </div>
       </div>
-
+      {/* TODO: Update dropdown menu! */}
       <DropDown />
     </nav>
   );

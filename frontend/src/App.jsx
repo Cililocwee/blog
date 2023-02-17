@@ -41,9 +41,11 @@ function App() {
   }, [user]);
 
   const logOut = () => {
-    googleLogout();
-    setProfile(null);
-    setUser(null);
+    if (confirm("Are you sure you want to log out?")) {
+      googleLogout();
+      setProfile(null);
+      setUser(null);
+    }
   };
 
   return (

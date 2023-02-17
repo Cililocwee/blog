@@ -23,9 +23,6 @@ export default function CommentInput({ changefnc, comment_body, submitfnc }) {
           >
             Comment
           </button>
-          <button className="px-3 py-2 text-sm text-stone-600 border border-stone-500 rounded">
-            Cancel
-          </button>
         </div>
       </form>
     </div>
