@@ -4,7 +4,17 @@ const { body, validationResult } = require("express-validator");
 
 // Display all comments for a blog
 // TODO
-exports.comment_list = (req, res, next) => {};
+exports.comment_list = (req, res, next) => {
+  Comment.find({ associated_blog: req.params.id }).exec((err, comments) => {
+    if (err) {
+      return next(err);
+    }
+    // console.log(req.params);
+    // console.log(req.body);
+    // Found all the comments
+    res.send(comments);
+  });
+};
 
 // Post a comment
 exports.comment_create = [

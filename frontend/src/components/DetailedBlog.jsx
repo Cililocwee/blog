@@ -27,6 +27,8 @@ export default function DetailedBlog({ id, profile }) {
     associated_blog: location,
   });
 
+  const [comments, setComments] = useState([]);
+
   useEffect(() => {
     fetch(`http://localhost:3001/blog/details/${location}`)
       .then((res) => {
@@ -38,6 +40,10 @@ export default function DetailedBlog({ id, profile }) {
         setBlog(jsonRes);
       })
       .catch((err) => console.error(err));
+
+    axios
+      .get(`http://localhost:3001/comments/${location}`)
+      .then((res) => setComments(res.data));
   }, []);
 
   function handleDelete() {
@@ -112,6 +118,7 @@ export default function DetailedBlog({ id, profile }) {
       id="detailed_blog"
       className="px-8 mb-auto flex flex-col items-center pt-3 pb-16 lg:pt-8 lg:pb-24  dark:bg-gray-900"
     >
+      <button onClick={() => console.log(comments)}>Click for comments</button>
       {blog && (
         <div className="pb-8 mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
           <h1 className="text-center my-4 text-3xl font-extrabold lemb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-whiteading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
