@@ -7,6 +7,10 @@ import CommentInput from "./CommentInput";
 import DeleteConfirm from "./DeleteConfirm";
 
 export default function DetailedBlog({ id }) {
+  const location = window.location.href.split("/blog/")[1];
+  const navigate = useNavigate();
+  Moment.locale("en");
+
   const [blog, setBlog] = useState([
     {
       title: "Loading",
@@ -15,7 +19,13 @@ export default function DetailedBlog({ id }) {
     },
   ]);
 
-  const location = window.location.href.split("/blog/")[1];
+  const [input, setInput] = useState({
+    username: "",
+    profile_picture_url: "",
+    comment_body: "",
+    date_posted: "",
+    associated_blog: location,
+  });
 
   useEffect(() => {
     fetch(`http://localhost:3001/blog/details/${location}`)
@@ -29,8 +39,6 @@ export default function DetailedBlog({ id }) {
       })
       .catch((err) => console.error(err));
   }, []);
-
-  const navigate = useNavigate();
 
   function handleDelete() {
     fetch(`http://localhost:3001/blog/delete/${location}`, {
@@ -63,7 +71,18 @@ export default function DetailedBlog({ id }) {
     navigate(`/update/${location}`);
   }
 
-  Moment.locale("en");
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setInput((prevInput) => {
+      return {
+        ...prevInput,
+        [name]: value,
+      };
+    });
+
+    console.log(input);
+  }
 
   return (
     <div
@@ -97,7 +116,10 @@ export default function DetailedBlog({ id }) {
           </div>
         </div>
       )}
-      <CommentInput />
+      <CommentInput
+        changefnc={handleChange}
+        comment_body={input.comment_body}
+      />
       <CommentBox />
     </div>
   );

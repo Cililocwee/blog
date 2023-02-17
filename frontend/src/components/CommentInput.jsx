@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CommentInput() {
+export default function CommentInput({ changefnc, comment_body }) {
   return (
     <div className="max-w-lg rounded-lg shadow-md shadow-stone-600/50">
       <form action="" className="w-full p-4">
@@ -10,8 +10,10 @@ export default function CommentInput() {
           </label>
           <textarea
             className="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
-            name="comment"
+            name="comment_body"
             placeholder=""
+            onChange={changefnc}
+            value={comment_body}
           ></textarea>
         </div>
         <div className="flex justify-between">
