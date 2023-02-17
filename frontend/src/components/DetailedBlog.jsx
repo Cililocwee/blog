@@ -47,6 +47,7 @@ export default function DetailedBlog({ id, profile }) {
       .catch((err) => console.error(err));
   };
 
+  //!! This needs to update on submit, so the comments go live, but it's now
   useEffect(() => {
     fetchPost();
     fetchComments();
