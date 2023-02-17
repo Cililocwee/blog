@@ -2,7 +2,7 @@ import React from "react";
 
 export default function CommentInput({ changefnc, comment_body, submitfnc }) {
   return (
-    <div className="max-w-lg rounded-lg shadow-md shadow-stone-600/50">
+    <div className="mb-8 max-w-lg rounded-lg shadow-md shadow-stone-600/50">
       <form action="" className="w-full p-4">
         <div className="mb-2">
           <label htmlFor="comment" className="text-lg text-gray-600">

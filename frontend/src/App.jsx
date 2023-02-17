@@ -54,7 +54,6 @@ function App() {
           login={login}
           logout={logOut}
         />
-        <button onClick={() => console.log(profile)}>Click</button>
         <Routes>
           <Route path="/" element={<Blogs />} />
           <Route path="/blogs" element={<Blogs />} />

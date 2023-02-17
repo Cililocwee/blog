@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import Moment from "moment";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import CommentBox from "./CommentBox";
 import CommentInput from "./CommentInput";
-import DeleteConfirm from "./DeleteConfirm";
+import CommentCard from "./CommentCard";
 
 export default function DetailedBlog({ id, profile }) {
   const location = window.location.href.split("/blog/")[1];
@@ -29,7 +28,13 @@ export default function DetailedBlog({ id, profile }) {
 
   const [comments, setComments] = useState([]);
 
-  useEffect(() => {
+  const fetchComments = async () => {
+    axios.get(`http://localhost:3001/comments/${location}`).then((res) => {
+      setComments(res.data.reverse());
+    });
+  };
+
+  const fetchPost = async () => {
     fetch(`http://localhost:3001/blog/details/${location}`)
       .then((res) => {
         if (res.ok) {
@@ -40,10 +45,11 @@ export default function DetailedBlog({ id, profile }) {
         setBlog(jsonRes);
       })
       .catch((err) => console.error(err));
+  };
 
-    axios
-      .get(`http://localhost:3001/comments/${location}`)
-      .then((res) => setComments(res.data));
+  useEffect(() => {
+    fetchPost();
+    fetchComments();
   }, []);
 
   function handleDelete() {
@@ -95,7 +101,6 @@ export default function DetailedBlog({ id, profile }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // console.log(input);
 
     if (input.comment_body < 1) {
       alert("Comments must be more than 1 character!");
@@ -104,6 +109,7 @@ export default function DetailedBlog({ id, profile }) {
     axios
       .post("http://localhost:3001/comments/submit", input)
       .catch((err) => console.log(err));
+
     setInput({
       username: "",
       profile_picture_url: "",
@@ -118,7 +124,6 @@ export default function DetailedBlog({ id, profile }) {
       id="detailed_blog"
       className="px-8 mb-auto flex flex-col items-center pt-3 pb-16 lg:pt-8 lg:pb-24  dark:bg-gray-900"
     >
-      <button onClick={() => console.log(comments)}>Click for comments</button>
       {blog && (
         <div className="pb-8 mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
           <h1 className="text-center my-4 text-3xl font-extrabold lemb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-whiteading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
@@ -155,11 +160,12 @@ export default function DetailedBlog({ id, profile }) {
       )}
 
       {comments.map((comment) => (
-        <CommentBox
+        <CommentCard
           comment_body={comment.comment_body}
           date_posted={comment.date_posted}
           username={comment.username}
           profile_pic_url={comment.profile_pic_url}
+          key={crypto.randomUUID()}
         />
       ))}
     </div>
