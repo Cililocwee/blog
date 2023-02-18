@@ -1,5 +1,27 @@
 {
   "dependencies": {
     "dotenv": "^16.0.3"
-  }
+  },
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "./backend/server.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd ./backend && node server.js"
+  },
+  "engines": {
+    "node": "19.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cililocwee/blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cililocwee/blog/issues"
+  },
+  "homepage": "https://github.com/Cililocwee/blog#readme",
+  "description": ""
 }
