@@ -7,6 +7,7 @@ export default function CommentCard({
   profile_pic_url,
   username,
   comment_id,
+  admin_key,
 }) {
   Moment.locale("en");
 
@@ -66,9 +67,11 @@ export default function CommentCard({
         {decodeHtml(comment_body)}
       </p>
       <div className="flex items-center mt-4 space-x-4"></div>
-      <button onClick={confirmDelete} className="flex ml-auto text-red-600">
-        Delete Comment
-      </button>
+      {admin_key && (
+        <button onClick={confirmDelete} className="flex ml-auto text-red-600">
+          Delete Comment
+        </button>
+      )}
     </article>
   );
 }

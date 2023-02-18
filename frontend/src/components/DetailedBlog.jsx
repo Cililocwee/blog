@@ -167,6 +167,9 @@ export default function DetailedBlog({ id, profile }) {
           username={comment.username}
           profile_pic_url={comment.profile_pic_url}
           comment_id={comment._id}
+          admin_key={
+            profile ? profile?.id === import.meta.env.VITE_ADMIN_ID : false
+          }
           key={crypto.randomUUID()}
         />
       ))}
