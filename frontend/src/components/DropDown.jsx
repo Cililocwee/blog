@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function DropDown() {
+export default function DropDown({ login, logout, profile }) {
   return (
     <div className="block sm:hidden my-auto">
       <div className="pl-10">
@@ -33,22 +33,27 @@ export default function DropDown() {
                 About Me
               </Link>
             </li>
+
             <li className="">
-              <Link
-                className="w-full bg-stone-300 hover:bg-stone-400 py-2 px-4 block whitespace-no-wrap"
-                to="/create"
-              >
-                New Post
-              </Link>
+              {profile ? (
+                <button
+                  onClick={logout}
+                  className="w-full rounded-b bg-stone-300 hover:bg-stone-400 py-2 px-4 block whitespace-no-wrap"
+                  href="#"
+                >
+                  Log Out
+                </button>
+              ) : (
+                <button
+                  onClick={login}
+                  className="w-full rounded-b bg-stone-300 hover:bg-stone-400 py-2 px-4 block whitespace-no-wrap"
+                  href="#"
+                >
+                  Log In
+                </button>
+              )}
             </li>
-            <li className="">
-              <Link
-                className="text-slate-500 line-through rounded-b bg-stone-300 hover:bg-stone-400 py-2 px-4 block whitespace-no-wrap"
-                href="#"
-              >
-                Log Out
-              </Link>
-            </li>
+            <li className=""></li>
           </ul>
         </div>
       </div>

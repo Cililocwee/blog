@@ -127,7 +127,7 @@ export default function DetailedBlog({ id, profile }) {
     >
       {blog && (
         <div className="pb-8 mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-          <h1 className="text-center my-4 text-3xl font-extrabold lemb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-whiteading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
+          <h1 className="text-center my-4 lemb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-whiteading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
             {blog.title}
           </h1>
           <p className="whitespace-pre-wrap">{blog.content}</p>
@@ -135,23 +135,26 @@ export default function DetailedBlog({ id, profile }) {
             <p className="my-3 text-slate-400 text-sm">
               Posted: {Moment(blog.date_posted).calendar()}
             </p>
-            <div className="flex align-items-center">
-              <button
-                onClick={handleUpdate}
-                className="m-3 w-16 h-8 px-3 py-2 text-xs font-medium  text-center text-white bg-stone-400 rounded-lg hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800"
-              >
-                Edit
-              </button>
-              <button
-                onClick={confirmDelete}
-                className="m-3 h-8 w-16 px-3 py-2 text-xs font-medium text-center text-white bg-stone-700 rounded-lg hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800"
-              >
-                Delete
-              </button>
-            </div>
+            {profile?.id === import.meta.env.VITE_ADMIN_ID && (
+              <div className="flex align-items-center">
+                <button
+                  onClick={handleUpdate}
+                  className="m-3 w-16 h-8 px-3 py-2 text-xs font-medium  text-center text-white bg-stone-400 rounded-lg hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={confirmDelete}
+                  className="m-3 h-8 w-16 px-3 py-2 text-xs font-medium text-center text-white bg-stone-700 rounded-lg hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800"
+                >
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
+
       {profile && (
         <CommentInput
           changefnc={handleChange}

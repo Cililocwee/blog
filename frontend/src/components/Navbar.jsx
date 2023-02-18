@@ -75,7 +75,11 @@ export default function Navbar({ username, login, logout }) {
         </div>
       </div>
       {/* TODO: Update dropdown menu! */}
-      <DropDown />
+      <DropDown
+        login={() => login()}
+        logout={logout}
+        profile={username ? true : false}
+      />
     </nav>
   );
 }
