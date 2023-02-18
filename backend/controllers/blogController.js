@@ -122,12 +122,3 @@ exports.blog_update_post = [
     });
   },
 ];
-
-// ------------------------- //
-
-// Blogpost create form GET
-// ** React Router is handling the GET requests... is this okay?
-
-//** Display blogpost update form GET
-
-//** Display blogpost delete GET

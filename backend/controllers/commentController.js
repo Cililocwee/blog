@@ -47,3 +47,18 @@ exports.comment_create = [
 
 // Delete a comment
 // TODO
+exports.comment_delete = (req, res, next) => {
+  Comment.findById(req.params.id).exec((err, results) => {
+    if (err) {
+      return next(err);
+    }
+
+    // Found comment
+    Comment.findByIdAndRemove(req.params.id, (err) => {
+      if (err) {
+        return next(err);
+      }
+      res.send(`Comment ${req.params.id} deleted`);
+    });
+  });
+};

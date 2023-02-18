@@ -6,6 +6,7 @@ export default function CommentCard({
   date_posted,
   profile_pic_url,
   username,
+  comment_id,
 }) {
   Moment.locale("en");
 
@@ -13,6 +14,27 @@ export default function CommentCard({
     let txt = document.createElement("textarea");
     txt.innerHTML = html;
     return txt.value;
+  }
+
+  function handleDelete() {
+    fetch(`http://localhost:3001/comments/delete/${comment_id}`, {
+      method: "Delete",
+    }).then(async (res) => {
+      const data = await res.text();
+
+      // check for errors
+      if (!res.ok) {
+        // report error
+        const error = (data && data.message) || res.status;
+        return Promise.reject(error);
+      }
+    });
+  }
+
+  function confirmDelete() {
+    if (confirm(`Delete comment ${comment_id}: ${comment_body}?`)) {
+      handleDelete();
+    }
   }
 
   return (
@@ -44,6 +66,9 @@ export default function CommentCard({
         {decodeHtml(comment_body)}
       </p>
       <div className="flex items-center mt-4 space-x-4"></div>
+      <button onClick={confirmDelete} className="flex ml-auto text-red-600">
+        Delete Comment
+      </button>
     </article>
   );
 }

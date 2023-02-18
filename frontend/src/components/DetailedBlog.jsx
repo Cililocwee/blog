@@ -166,6 +166,7 @@ export default function DetailedBlog({ id, profile }) {
           date_posted={comment.date_posted}
           username={comment.username}
           profile_pic_url={comment.profile_pic_url}
+          comment_id={comment._id}
           key={crypto.randomUUID()}
         />
       ))}

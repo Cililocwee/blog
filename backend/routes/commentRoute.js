@@ -6,4 +6,6 @@ router.post("/submit", comment_controller.comment_create);
 
 router.get("/:id", comment_controller.comment_list);
 
+router.delete("/delete/:id", comment_controller.comment_delete);
+
 module.exports = router;
