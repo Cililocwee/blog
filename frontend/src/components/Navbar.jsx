@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import Github from "../assets/github.svg";
-import Linkedin from "../assets/linkedin.svg";
+import Github from "../assets/github.png";
+import Linkedin from "../assets/linkedin.png";
 import DropDown from "./DropDown";
 
 export default function Navbar({ username, login, logout }) {
@@ -26,7 +26,7 @@ export default function Navbar({ username, login, logout }) {
         </div>
       </Link>
 
-      <div className="hidden sm:flex sm:items-center mx-auto sm:ml-auto sm:mr-0 gap-8">
+      <div className="hidden sm:flex sm:items-center mx-auto sm:ml-auto sm:mr-0 gap-4 md:gap-8">
         <Link
           to={"/blogs"}
           className="text-2xl no-underline text-grey-darkest hover:text-blue-dark"
@@ -43,16 +43,16 @@ export default function Navbar({ username, login, logout }) {
 
         <Link
           to="https://github.com/Cililocwee"
-          className="hover:scale-110 duration-500 ease-in-out"
+          className="flex h-8 w-8 hover:scale-110 duration-500 ease-in-out"
         >
           <img className="h-8" src={Github} alt="" />
         </Link>
 
         <Link
           to="https://www.linkedin.com/in/corriestroup/"
-          className="hover:scale-110 duration-500 ease-in-out"
+          className="flex h-8 w-8 hover:scale-110 duration-500 ease-in-out"
         >
-          <img className="h-8" src={Linkedin} alt="" />
+          <img className="h-8 w-8 shrink-0" src={Linkedin} alt="" />
         </Link>
         <div>
           {username ? (
