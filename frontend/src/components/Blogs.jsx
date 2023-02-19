@@ -4,6 +4,13 @@ import Moment from "moment";
 import { Link } from "react-router-dom";
 
 export default function Blogs() {
+  let ADDRESS;
+  if (import.meta.env.VITE_STATUS === "production") {
+    ADDRESS = import.meta.env.VITE_PRODUCTION_ADDRESS;
+  } else {
+    ADDRESS = import.meta.env.VITE_DEV_ADDRESS;
+  }
+
   const [blogs, setBlogs] = useState([
     {
       title: "",
@@ -13,7 +20,7 @@ export default function Blogs() {
   ]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/blogs/")
+    fetch(ADDRESS + "/blogs")
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -35,7 +42,7 @@ export default function Blogs() {
             className="border border-black-800 border-solid mx-auto w-full max-w-4xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert"
             key={k}
           >
-            <h4 className="text-left my-4 text-3xl font-extrabold lemb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-3 lg:text-4xl dark:text-whiteading-tight text-gray-900 lg:mb-3 lg:text-4xl dark:text-white">
+            <h4 className="text-left my-4 lemb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-3 lg:text-4xl dark:text-whiteading-tight text-gray-900 lg:mb-3 lg:text-4xl dark:text-white">
               <Link
                 className="no-underline text-slate-500"
                 to={`/blog/${item._id}`}
@@ -43,15 +50,10 @@ export default function Blogs() {
                 {item.title}
               </Link>
             </h4>
-            {/* <p className="text-left whitespace-pre-wrap">{item.content}</p> */}
             <div className="flex justify-between">
               <p className="my-3 text-slate-400 text-sm">
                 Published: {Moment(item.date_posted).calendar()}
               </p>
-
-              {/* <p className="my-3 text-slate-400 text-m underline">
-                <Link to={`/blog/${item._id}`}>0 comments</Link>
-              </p> */}
             </div>
           </div>
         ))}

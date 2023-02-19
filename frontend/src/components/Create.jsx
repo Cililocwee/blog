@@ -3,6 +3,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Create() {
+  let ADDRESS;
+  if (import.meta.env.VITE_STATUS === "production") {
+    ADDRESS = import.meta.env.VITE_PRODUCTION_ADDRESS;
+  } else {
+    ADDRESS = import.meta.env.VITE_DEV_ADDRESS;
+  }
+
   const [input, setInput] = useState({
     title: "",
     content: "",
@@ -42,7 +49,7 @@ export default function Create() {
     };
 
     // TODO Refactor this to either take a fetch call or chain .then() after axios
-    axios.post("http://localhost:3001/create", newBlog);
+    axios.post(ADDRESS + "/create", newBlog);
     navigate("/blogs");
   }
 

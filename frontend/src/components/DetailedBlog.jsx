@@ -6,6 +6,13 @@ import CommentInput from "./CommentInput";
 import CommentCard from "./CommentCard";
 
 export default function DetailedBlog({ id, profile }) {
+  let ADDRESS;
+  if (import.meta.env.VITE_STATUS === "production") {
+    ADDRESS = import.meta.env.VITE_PRODUCTION_ADDRESS;
+  } else {
+    ADDRESS = import.meta.env.VITE_DEV_ADDRESS;
+  }
+
   const location = window.location.href.split("/blog/")[1];
   const navigate = useNavigate();
   Moment.locale("en");
@@ -29,13 +36,13 @@ export default function DetailedBlog({ id, profile }) {
   const [comments, setComments] = useState([]);
 
   const fetchComments = async () => {
-    axios.get(`http://localhost:3001/comments/${location}`).then((res) => {
+    axios.get(ADDRESS + `/comments/${location}`).then((res) => {
       setComments(res.data.reverse());
     });
   };
 
   const fetchPost = async () => {
-    fetch(`http://localhost:3001/blog/details/${location}`)
+    fetch(ADDRESS + `/blog/details/${location}`)
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -54,7 +61,7 @@ export default function DetailedBlog({ id, profile }) {
   }, []);
 
   function handleDelete() {
-    fetch(`http://localhost:3001/blog/delete/${location}`, {
+    fetch(ADDRESS + `/blog/delete/${location}`, {
       method: "Delete",
     })
       .then(async (res) => {
@@ -108,7 +115,7 @@ export default function DetailedBlog({ id, profile }) {
     }
 
     axios
-      .post("http://localhost:3001/comments/submit", input)
+      .post(ADDRESS + "/comments/submit", input)
       .catch((err) => console.log(err));
 
     setInput({
